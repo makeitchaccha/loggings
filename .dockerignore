@@ -1,0 +1,31 @@
+# Binaries for programs and plugins
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Test binary, coverage reports
+*.test
+*.out
+*.coverprofile
+
+# Output of the build process
+bin/
+build/
+
+# IDE/editor specific files
+.vscode/
+.idea/
+*.swp
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.bak
+
+# Docker-related files
+Dockerfile
+docker-compose.yml
