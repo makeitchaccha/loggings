@@ -9,7 +9,7 @@ import (
 	"github.com/disgoorg/disgo/events"
 	"github.com/makeitchaccha/loggings/internal/pkg/logging"
 	"github.com/makeitchaccha/loggings/internal/pkg/settings"
-	"github.com/makeitchaccha/loggings/pkg/extslices"
+	"github.com/samber/lo"
 )
 
 type Command interface {
@@ -236,11 +236,11 @@ func (s *SettingsCommand) Autocomplete(event *events.AutocompleteInteractionCrea
 func (s *SettingsCommand) autocompleteType(event *events.AutocompleteInteractionCreate) error {
 	t := event.Data.String("type")
 
-	prefixeds := extslices.Filter(s.Events, func(e logging.Event) bool {
+	prefixeds := lo.Filter(s.Events, func(e logging.Event, _ int) bool {
 		return strings.HasPrefix(e.String(), t)
 	})
 
-	choices := extslices.Map(prefixeds, func(e logging.Event) discord.AutocompleteChoice {
+	choices := lo.Map(prefixeds, func(e logging.Event, _ int) discord.AutocompleteChoice {
 		return discord.AutocompleteChoiceString{
 			Name:  e.String(),
 			Value: e.String(),
